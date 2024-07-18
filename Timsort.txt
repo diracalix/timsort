@@ -34,6 +34,7 @@ int main() {
     auto fin = chrono::high_resolution_clock::now();
     chrono::duration<double> duracion = fin - inicio;
     cout << "Array pequeño ordenado en: " << duracion.count() << " segundos\n";
+    cout << "Uso de memoria del array pequeño: " << pequeno.size() * sizeof(int) << " bytes\n";
 
     // Mide el tiempo de ejecución de Timsort en el array mediano
     inicio = chrono::high_resolution_clock::now();
@@ -41,6 +42,7 @@ int main() {
     fin = chrono::high_resolution_clock::now();
     duracion = fin - inicio;
     cout << "Array mediano ordenado en: " << duracion.count() << " segundos\n";
+    cout << "Uso de memoria del array mediano: " << mediano.size() * sizeof(int) << " bytes\n";
 
     // Mide el tiempo de ejecución de Timsort en el array grande
     inicio = chrono::high_resolution_clock::now();
@@ -48,6 +50,7 @@ int main() {
     fin = chrono::high_resolution_clock::now();
     duracion = fin - inicio;
     cout << "Array grande ordenado en: " << duracion.count() << " segundos\n";
+    cout << "Uso de memoria del array grande: " << grande.size() * sizeof(int) << " bytes\n";
 
     return 0; // Termina el programa
 }
