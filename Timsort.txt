@@ -1,0 +1,53 @@
+#include <iostream>
+#include <vector>
+#include <ctime>
+#include <cstdlib>
+#include <chrono>
+#include <algorithm> // Para std::sort, que implementa Timsort en la mayoría de las implementaciones de la biblioteca estándar
+
+using namespace std;
+
+// Función para generar un array con elementos aleatorios
+void generateRandomArray(vector<int>& arr) {
+    for (int& num : arr) {
+        num = rand(); // Asigna un número aleatorio a cada elemento del array
+    }
+}
+
+// Función de envoltura para utilizar std::sort (Timsort)
+void timSort(vector<int>& arr) {
+    sort(arr.begin(), arr.end()); // std::sort usa Timsort en la mayoría de los compiladores
+}
+
+int main() {
+    srand(time(0)); // Inicializa el generador de números aleatorios con el tiempo actual
+    vector<int> pequeno(100), mediano(300), grande(500);
+
+    // Genera arrays aleatorios de diferentes tamaños
+    generateRandomArray(pequeno);
+    generateRandomArray(mediano);
+    generateRandomArray(grande);
+
+    // Mide el tiempo de ejecución de Timsort en el array pequeño
+    auto inicio = chrono::high_resolution_clock::now();
+    timSort(pequeno);
+    auto fin = chrono::high_resolution_clock::now();
+    chrono::duration<double> duracion = fin - inicio;
+    cout << "Array pequeño ordenado en: " << duracion.count() << " segundos\n";
+
+    // Mide el tiempo de ejecución de Timsort en el array mediano
+    inicio = chrono::high_resolution_clock::now();
+    timSort(mediano);
+    fin = chrono::high_resolution_clock::now();
+    duracion = fin - inicio;
+    cout << "Array mediano ordenado en: " << duracion.count() << " segundos\n";
+
+    // Mide el tiempo de ejecución de Timsort en el array grande
+    inicio = chrono::high_resolution_clock::now();
+    timSort(grande);
+    fin = chrono::high_resolution_clock::now();
+    duracion = fin - inicio;
+    cout << "Array grande ordenado en: " << duracion.count() << " segundos\n";
+
+    return 0; // Termina el programa
+}
